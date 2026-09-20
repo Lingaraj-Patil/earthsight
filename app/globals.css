@@ -1,0 +1,117 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+:root {
+  --es-bg: #07110f;
+  --es-card: #0c1916;
+  --es-border: rgba(255, 255, 255, 0.08);
+  --es-accent: #34d399;
+  --es-accent-soft: rgba(52, 211, 153, 0.12);
+  --es-text: #f4f6f5;
+  --es-text-muted: #9ca8a4;
+
+  --es-low: #4ade80;
+  --es-moderate: #facc15;
+  --es-high: #fb923c;
+  --es-critical: #f87171;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: var(--es-bg);
+  color: var(--es-text);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-geist-sans, ui-sans-serif), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--es-accent);
+  color: #06120f;
+}
+
+.es-card {
+  background: var(--es-card);
+  border: 1px solid var(--es-border);
+}
+
+.es-focus-ring:focus-visible {
+  outline: 2px solid var(--es-accent);
+  outline-offset: 2px;
+}
+
+/* Leaflet dark theming */
+.leaflet-container {
+  background: #0a1512 !important;
+  font-family: inherit;
+}
+
+.leaflet-popup-content-wrapper {
+  background: var(--es-card);
+  color: var(--es-text);
+  border-radius: 1rem;
+  border: 1px solid var(--es-border);
+}
+
+.leaflet-popup-tip {
+  background: var(--es-card);
+}
+
+.leaflet-control-zoom a {
+  background: var(--es-card) !important;
+  color: var(--es-text) !important;
+  border-color: var(--es-border) !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(12, 25, 22, 0.8) !important;
+  color: var(--es-text-muted) !important;
+}
+.leaflet-control-attribution a {
+  color: var(--es-accent) !important;
+}
+
+/* Dark-mode tile styling: standard OpenStreetMap tiles (no API key
+   required) are re-colored client-side to fit EarthSight's dark theme.
+   This only targets the raster tile images, not markers/popups/overlays,
+   which live in separate Leaflet panes. */
+.map-tiles-dark {
+  filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.9) saturate(0.7);
+}
+
+@keyframes es-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(52, 211, 153, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+  }
+}
+
+.es-pulse {
+  animation: es-pulse 2s infinite;
+}
+
+@keyframes es-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.es-fade-up {
+  animation: es-fade-up 0.5s ease both;
+}
